@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>The Red Planet</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+</head>
+
+<body>
+  <div class="container-fluid">
+    <div class="jumbotron text-center">
+      <h1>Mission to Mars</h1>
+      <p><a class="btn btn-primary btn-lg" href="/scrape" role="button">Scrape New Data!</a></p>
+    </div>
+    <h2 align="left">Latest Mars News</h2>
+    <p><strong>{{mars.news_title}}</strong></p>
+    <p> {{mars.news_p}} </p> 
+  </div>
+  <div class="container">
+    <div class="row">
+      <div class="col-md-9">
+        <h2 align="left"><strong>Featured Mars Image</strong></h2>
+        <img src="{{mars.featured_img}}" alt="Featured Image" width="600" height="500">
+      </div>
+      <div class="col-md-3">
+        <h3><strong>Current Weather on Mars</strong></h3>
+        <p>{{mars.mars_weather}}</p>
+        <h3><strong>Mars Facts</strong></h3>
+        <p>{{mars.mars_facts|safe}}</p>
+      </div>
+    </div>
+    <div class="container-fluid">
+      <div class="row">
+        <h1 class="text-center">Hemispheres of Mars</h1>
+        <br>
+      {% for dict in mars.image_urls %}
+          <div class="col-md-6 text-center">
+            <div class="card text-center" style="width: 32rem;">
+              <img class="card-img-top text-center" src="{{ dict.img_url }}" width="500" height="500">
+                <div class="card-body text-center">
+                  <h4 class="card-title text-center">{{ dict.title }}</h4>
+                </div>
+              </div>
+          </div>
+      {% endfor %}
+      </div>
+      </div>
+</body>
+
+</html>
